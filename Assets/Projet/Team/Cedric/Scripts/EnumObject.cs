@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnumObject : MonoBehaviour {
 
-	public enum e_ObjectsGame
+	public enum e_ScoringObjects
     {
         NOTHING,
         PacBall,
@@ -13,5 +13,5 @@ public class EnumObject : MonoBehaviour {
         Enemy
     }
 
-    public e_ObjectsGame m_ObjectsGame;
+    public e_ScoringObjects m_ScoringObjects;
 }
