@@ -15,11 +15,13 @@ public class MovementController : MonoBehaviour
 {
     #region Private and Protected Members
     private List<GameObject> bullet;
+    private Rigidbody m_rb;
+    private e_state e_cube_state;
     #endregion
     #region Public Members
     public GameObject player;
-    private Rigidbody m_rb;
-    private e_state e_cube_state ;
+    public float speed =5f;
+    
 
     #endregion
 
@@ -144,19 +146,19 @@ public class MovementController : MonoBehaviour
         {
             case e_state.up:
                 Debug.Log("up");
-                Move(1, Vector3.forward);
+                Move(speed, Vector3.forward);
                 break;
             case e_state.down:
                 Debug.Log("down");
-                Move(1, Vector3.back);
+                Move(speed, Vector3.back);
                 break;
             case e_state.left:
                 Debug.Log("left");
-                Move(1, Vector3.right);
+                Move(speed, Vector3.right);
                 break;
             case e_state.right:
                 Debug.Log("right");
-                Move(1, Vector3.left);
+                Move(speed, Vector3.left);
                 break;
             case e_state.none:
                 Debug.Log("none");
