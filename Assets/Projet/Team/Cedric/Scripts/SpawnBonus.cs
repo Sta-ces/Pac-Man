@@ -28,7 +28,7 @@ public class SpawnBonus : MonoBehaviour {
         if (_spawner.childCount == 0)
         {
             GameObject prefab = Instantiate(m_prefabsBonus, _spawner);
-            //prefab.GetComponent<SpriteRenderer>().sprite = m_listSpritebonus[RandomNumber(0, m_listSpritebonusMax)];
+            prefab.GetComponent<SpriteRenderer>().sprite = m_listSpritebonus[RandomNumber(0, m_listSpritebonusMax)];
         }
     }
 

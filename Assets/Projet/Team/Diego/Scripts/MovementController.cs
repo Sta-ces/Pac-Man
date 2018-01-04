@@ -15,7 +15,7 @@ public class MovementController : MonoBehaviour
 {
     #region Private and Protected Members
     private List<GameObject> bullet;
-    private Rigidbody m_rb;
+    private Rigidbody2D m_rb;
     private e_state e_cube_state;
     #endregion
     #region Public Members
@@ -33,15 +33,33 @@ public class MovementController : MonoBehaviour
 
     public void Start()
     {
-        m_rb = player.GetComponent<Rigidbody>();
+        m_rb = player.GetComponent<Rigidbody2D>();
     }
     
     void Update ()
     {
         // si x n'est pas compris entre 1 et -1 et idem y 
+        if (!(Input.acceleration.y <= 0.2 && Input.acceleration.y >= -0.2))
+        {
 
+            if (Input.acceleration.y < 0 && Input.acceleration.y < Input.acceleration.x)
+            {
+                StateAction(e_state.up);
+            }
+            else
+            {
+                if (Input.acceleration.y > 0)
+                {
+                    StateAction(e_state.down);
+                }
+                else
+                {
+                    StateAction(e_state.none);
+                }
+            }
+        }
         if (!(Input.acceleration.x <= 0.2 && Input.acceleration.x >= -0.2)) {
-            if (Input.acceleration.x < 0 && Input.acceleration.x < Input.acceleration.y)
+            if (Input.acceleration.x < 0 )
             {
                 StateAction(e_state.left);
             }
@@ -59,25 +77,7 @@ public class MovementController : MonoBehaviour
            
         }
      
-        if (!( Input.acceleration.y <= 0.2 && Input.acceleration.y >= -0.2))
-        { 
-
-            if (Input.acceleration.y < 0 )
-            {
-                 StateAction(e_state.up);
-            }
-            else
-            {
-                if (Input.acceleration.y > 0)
-                {
-                    StateAction(e_state.down);
-                }
-                else
-                {
-                    StateAction(e_state.none);
-                }
-            }
-        }
+        
         
 
         //Debug.Log(Input.acceleration);
@@ -146,19 +146,19 @@ public class MovementController : MonoBehaviour
         {
             case e_state.up:
                 Debug.Log("up");
-                Move(speed, Vector3.forward);
+                Move(speed, Vector3.down);
                 break;
             case e_state.down:
                 Debug.Log("down");
-                Move(speed, Vector3.back);
+                Move(speed, Vector3.up);
                 break;
             case e_state.left:
                 Debug.Log("left");
-                Move(speed, Vector3.right);
+                Move(speed, Vector3.left);
                 break;
             case e_state.right:
                 Debug.Log("right");
-                Move(speed, Vector3.left);
+                Move(speed, Vector3.right);
                 break;
             case e_state.none:
                 Debug.Log("none");
