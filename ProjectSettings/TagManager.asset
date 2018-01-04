@@ -3,10 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Pac-Ball
-  - Bonus
-  - IA
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -43,22 +40,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: zoneAI
-    uniqueID: 651011179
-    locked: 0
-  - name: Pac-Ball
-    uniqueID: 960801
-    locked: 0
-  - name: Bonus
-    uniqueID: 2974001411
-    locked: 0
-  - name: Player
-    uniqueID: 4086938325
-    locked: 0
-  - name: AI
-    uniqueID: 2813805997
-    locked: 0
-  - name: Walls
-    uniqueID: 3269717059
     locked: 0
