@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212716968399933910}
   - component: {fileID: 61724470693923152}
   m_Layer: 0
-  m_Name: droit
+  m_Name: wallLine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
