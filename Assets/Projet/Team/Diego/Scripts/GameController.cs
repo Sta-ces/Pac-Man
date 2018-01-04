@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -10,7 +11,8 @@ public class GameController : MonoBehaviour
     #region Public Members
     public int score = 0;
     public Player _player;
-    public EnumObject enumObj;
+    public Text _textScore;
+    public GameObject _bonus;
 
     
 
@@ -25,11 +27,12 @@ public class GameController : MonoBehaviour
 
     void Start ()
     {
-
+        
     }
 
     void Update ()
     {
+        _textScore.text = score.ToString();
         _BoucleDestruct();
     }
 
@@ -42,45 +45,32 @@ public class GameController : MonoBehaviour
         if (_player.scoringObjectList.Count > 0)
         {
 
-            int testboucle = 0;
+            
             foreach (GameObject _Object in _player.scoringObjectList)
 
             {
                 EnumObject enumObj = _Object.GetComponent<EnumObject>();
 
                 if (enumObj.m_ScoringObjects.ToString() == "PacBall")
-                {
-
-                    Debug.Log("PacBall");
+                { 
                     score++;
                 }
                 if (enumObj.m_ScoringObjects.ToString() == "PacGum")
-                {
-
-                    Debug.Log("PacGum");
+                { 
+                    score = score + 2;
                 }
                 if (enumObj.m_ScoringObjects.ToString() == "Bonus")
                 {
-
-                    Debug.Log("Bonus");
+                    _bonus.SetActive(true);
+                    score = score + 5;
                 }
                 if (enumObj.m_ScoringObjects.ToString() == "Enemy")
-                {
-
-                    Debug.Log("Enemy");
-                }
-
-                if (_player.scoringObjectList.Count == 1)
-                {
-                    Debug.Log("ok");
+                { 
                     score++;
-                    
                 }
-
-                testboucle++;
 
             }
-            Debug.Log("Mon test boucle ="+ testboucle);
+           
             _player.DestroyScoring();
         }
     }
