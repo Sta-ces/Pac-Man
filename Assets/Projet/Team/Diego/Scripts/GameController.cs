@@ -8,7 +8,6 @@ public class GameController : MonoBehaviour
 
     #endregion
     #region Public Members
-    public List<Ennemy> ennemies;
     public int score;
 
     

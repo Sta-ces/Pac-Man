@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+enum e_state
+{
+    up,
+    down,
+    left,
+    right
+}
 public class MovementController : MonoBehaviour
 {
     #region Private and Protected Members
@@ -19,10 +26,7 @@ public class MovementController : MonoBehaviour
     #endregion
 
     #region System
-   
-    private void OnGUI()
-    {
-    }
+
     public void Start()
     {
         m_rb = player.GetComponent<Rigidbody>();
@@ -30,8 +34,14 @@ public class MovementController : MonoBehaviour
     
     void Update ()
     {
-
-        AccMov();
+        Debug.Log(Input.acceleration);
+        if (Input.acceleration.x < 0) {
+            StateAction(e_state.left);
+        }
+        if (Input.acceleration.x < 0)
+        {
+            StateAction(e_state.right);
+        }
     }
 
     #endregion
@@ -82,11 +92,14 @@ public class MovementController : MonoBehaviour
         }
         return str;
     }
+
     private void AccMov() {
 #if UNITY_ANDROID && !UNITY_EDITOR || UNITY_IOS && !UNITY_EDITOR
                 
 
 #endif
+
+
         //player.transform.Translate(Input.acceleration.x / 10, transform.position.y, -Input.acceleration.z / 10);
         if (Input.acceleration.z >= -1.0f&& Input.acceleration.z <= -0.9f)
         {
@@ -99,7 +112,7 @@ public class MovementController : MonoBehaviour
             //player.transform.Translate(Input.acceleration.x / 10, transform.position.y, -Input.acceleration.z / 10);
             m_rb.AddForce(Input.acceleration.x / 10, transform.position.y, Input.acceleration.z / 10);
         }
-        Debug.Log(Input.acceleration.z); 
+        
     }
     // à voir si implémentation de balles
     private void Shoot(GameObject obj) {
@@ -108,8 +121,37 @@ public class MovementController : MonoBehaviour
 
     }
 
+    private void StateAction(e_state state)
+    {
+        switch (state)
+        {
+            case e_state.up:
+                Move(1, Vector3.up);
+                break;
+            case e_state.down:
+                Move(1, Vector3.down);
+                break;
+            case e_state.left:
+                Debug.Log("left");
+                Move(1, Vector3.left);
+                break;
+            case e_state.right:
+                Debug.Log("right");
+                Move(1, Vector3.right);
+                break;
+           
+            default:
+                break;
+        }
 
-    
+    }
+    private void Move(float speed, Vector3 direction)
+    {
+     
+        m_rb.velocity= direction*speed ;
+
+    }
+
 
     #endregion
 
