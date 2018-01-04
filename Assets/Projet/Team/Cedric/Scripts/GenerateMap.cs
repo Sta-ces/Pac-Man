@@ -14,7 +14,7 @@ public class GenerateMap : MonoBehaviour {
         m_screenHeight = Screen.height;
         Debug.Log("Screen : Width = "+m_screenWidth+" Height = "+m_screenHeight);
 
-        //CreateMap();
+        CreateMap();
 	}
 
     private void CreateMap()

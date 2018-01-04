@@ -44,6 +44,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: zoneAI
+    uniqueID: 651011179
+    locked: 0
   - name: Pac-Ball
     uniqueID: 960801
     locked: 0
@@ -54,7 +57,7 @@ TagManager:
     uniqueID: 4086938325
     locked: 0
   - name: AI
-    uniqueID: 651011179
+    uniqueID: 2813805997
     locked: 0
   - name: Walls
     uniqueID: 3269717059
