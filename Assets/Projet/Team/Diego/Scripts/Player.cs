@@ -28,9 +28,11 @@ public class Player : MonoBehaviour
     {
         	
     }
-    private void OnTriggerEnter2D(Collision2D collision)
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
             PickUp(collision.gameObject);
+        Debug.Log("ok");
     }
 
 
@@ -41,7 +43,7 @@ public class Player : MonoBehaviour
     {
         //tester la destruction d'objet
         scoringObjectList.Add(obj);
-        obj.SetActive(false);
+        //obj.SetActive(false);
 
     }
     public void DestroyScoring()
@@ -49,6 +51,7 @@ public class Player : MonoBehaviour
         foreach (GameObject obj in scoringObjectList)
         {
             Destroy(obj);
+            Debug.Log("isdestroyed");
         }
     }
     #endregion

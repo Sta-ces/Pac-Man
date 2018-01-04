@@ -145,23 +145,23 @@ public class MovementController : MonoBehaviour
         switch (state)
         {
             case e_state.up:
-                Debug.Log("up");
+               // Debug.Log("up");
                 Move(speed, Vector3.down);
                 break;
             case e_state.down:
-                Debug.Log("down");
+                //Debug.Log("down");
                 Move(speed, Vector3.up);
                 break;
             case e_state.left:
-                Debug.Log("left");
+               // Debug.Log("left");
                 Move(speed, Vector3.left);
                 break;
             case e_state.right:
-                Debug.Log("right");
+                //Debug.Log("right");
                 Move(speed, Vector3.right);
                 break;
             case e_state.none:
-                Debug.Log("none");
+               // Debug.Log("none");
                 m_rb.velocity = new Vector3(0, 0, 0);
                 ;
                 break;
