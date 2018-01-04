@@ -12,9 +12,10 @@ public class GenerateMap : MonoBehaviour {
 	void Awake() {
         m_screenWidth = Screen.width;
         m_screenHeight = Screen.height;
-        Debug.Log("Screen : Width = "+m_screenWidth+" Height = "+m_screenHeight);
+        /*Debug.Log("Screen : Width = "+m_screenWidth+" Height = "+m_screenHeight);
+        Debug.Log("Camera : Width = " + m_screenWidth + " Height = " + m_screenHeight);
 
-        //CreateMap();
+        CreateMap();*/
 	}
 
     private void CreateMap()
@@ -25,17 +26,16 @@ public class GenerateMap : MonoBehaviour {
         {
             for(int h = 0; h < m_screenHeight; h++)
             {
-                Vector3 vec3 = new Vector3(w, h, 0);
                 if (w == 0)
                 {
                     if(h == 0)
                     {
-                        MakeInstantiate(m_wallCorner,vec3,new Quaternion(0,0,0,0));
+                        MakeInstantiate(m_wallCorner, new Vector3(debutScreenWidth, m_screenHeight, 0), new Quaternion(0,0,0,0));
                     }
-                    else
-                    {
-                        MakeInstantiate(m_wallLine, vec3,new Quaternion(0,0,0,0));
-                    }
+                }
+                else
+                {
+                    //MakeInstantiate(m_wallLine, new Vector3(debutScreenWidth + w, debutScreenHeight + h, 0), new Quaternion(0,0,0,0));
                 }
             }
         }
