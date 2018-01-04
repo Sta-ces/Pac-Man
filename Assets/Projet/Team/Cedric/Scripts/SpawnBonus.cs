@@ -19,16 +19,15 @@ public class SpawnBonus : MonoBehaviour {
 
     private void Update()
     {
-        StartCoroutine("MakeSpawnBonus");
+        StartCoroutine(MakeSpawnBonus(m_listSpawner[RandomNumber(0, m_listSpawnerMax)].transform));
     }
 
-    private IEnumerator MakeSpawnBonus()
+    private IEnumerator MakeSpawnBonus(Transform _spawner)
     {
         yield return new WaitForSeconds(m_timeToSpawn);
-        Transform spawner = m_listSpawner[RandomNumber(0, m_listSpawnerMax)].transform;
-        if (spawner.childCount == 0)
+        if (_spawner.childCount == 0)
         {
-            GameObject prefab = Instantiate(m_prefabsBonus, spawner);
+            GameObject prefab = Instantiate(m_prefabsBonus, _spawner);
             prefab.GetComponent<SpriteRenderer>().sprite = m_listSpritebonus[RandomNumber(0, m_listSpritebonusMax)];
         }
     }
