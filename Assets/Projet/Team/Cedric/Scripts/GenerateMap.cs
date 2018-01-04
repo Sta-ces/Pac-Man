@@ -19,7 +19,9 @@ public class GenerateMap : MonoBehaviour {
 
     private void CreateMap()
     {
-        for(int w = 0; w < m_screenWidth; w++)
+        int debutScreenWidth = -(m_screenWidth / 2);
+        int debutScreenHeight = -(m_screenHeight / 2);
+        for (int w = 0; w < m_screenWidth; w++)
         {
             for(int h = 0; h < m_screenHeight; h++)
             {
