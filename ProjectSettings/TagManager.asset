@@ -41,3 +41,24 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+<<<<<<< HEAD
+  - name: zoneAI
+    uniqueID: 651011179
+    locked: 0
+  - name: Pac-Balls
+    uniqueID: 960801
+    locked: 0
+  - name: Bonus
+    uniqueID: 2974001411
+    locked: 0
+  - name: Player
+    uniqueID: 4086938325
+    locked: 0
+  - name: AI
+    uniqueID: 2813805997
+    locked: 0
+  - name: Walls
+    uniqueID: 3269717059
+    locked: 0
+=======
+>>>>>>> 7ebf9fca967cf43f429a0fd8ffb598823341a869
