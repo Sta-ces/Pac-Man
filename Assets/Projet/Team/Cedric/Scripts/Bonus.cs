@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnumObject : MonoBehaviour {
+public class Bonus : MonoBehaviour {
 
 	public enum e_ScoringObjects
     {

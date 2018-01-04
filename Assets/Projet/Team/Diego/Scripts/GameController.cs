@@ -13,8 +13,8 @@ public class GameController : MonoBehaviour
     public Player _player;
     public Text _textScore;
     public GameObject _bonus;
-    public bool finish=true;
-    
+    public bool finish = true;
+
 
 
     #endregion
@@ -25,18 +25,18 @@ public class GameController : MonoBehaviour
 
     #region System
 
-    void Start ()
+    void Start()
     {
-        
+
     }
 
-    void Update ()
+    void Update()
     {
         if (finish)
         {
-            _BoucleDestruct();
+            ScoreCount();
         }
-        
+
         _textScore.text = score.ToString();
     }
 
@@ -44,49 +44,65 @@ public class GameController : MonoBehaviour
 
     #region Tools Debug and Utility
 
-    public void _BoucleDestruct()
+    public void ScoreCount()
     {
-        Debug.Log(_player.scoringObjectList.Count);
-        if (_player.scoringObjectList.Count > 0)
+        Debug.Log(_player.bonusList.Count);
+        if (_player.bonusList.Count > 0)
         {
 
             finish = false;
-            for (int i=0; i < _player.scoringObjectList.Count;i++){
-
-                GameObject gobj = _player.scoringObjectList[i];
-                EnumObject enumObj = gobj.GetComponent<EnumObject>();
-
-                if (enumObj.m_ScoringObjects.ToString() == "PacBall")
-                {
-                    score++;
-                }
-                if (enumObj.m_ScoringObjects.ToString() == "PacGum")
-                {
-                    score = score + 2;
-                }
-                if (enumObj.m_ScoringObjects.ToString() == "Bonus")
-                {
-                    _bonus.SetActive(true);
-                    score = score + 5;
-                }
-                if (enumObj.m_ScoringObjects.ToString() == "Enemy")
-                {
-                    score++;
-                }
-            }
-          
-            finish = true;
-            Debug.Log(score);
-            if (!(_player.scoringObjectList==null))
+            for (int i = 0; i < _player.bonusList.Count; i++)
             {
-                _player.DestroyScoring();
-                Debug.Log(_player.scoringObjectList.Count);
+                Debug.Log(_player.bonusList.Count);
+                switch (_player.bonusList[i].m_ScoringObjects.ToString())
+                {
+                    case "PacBall":
+                        RemoveListObject<Bonus>(_player.bonusList,_player.bonusList[i]);
+                        score++;
+                        break;
+                    case "PacGum":
+                        _bonus.SetActive(true);
+                        RemoveListObject<Bonus>(_player.bonusList, _player.bonusList[i]);
+                        score = score + 5;
+                        break;
+                    case "Bonus":
+                        RemoveListObject<Bonus>(_player.bonusList, _player.bonusList[i]);
+                        
+                        score = score + 600;
+                        break;
+                    case "Enemy":
+                        RemoveListObject<Bonus>(_player.bonusList, _player.bonusList[i]);
+                        score += 500;
+                        break;
+                    default:
+                        break;
+                }
             }
-            
+
+            if (!(_player.bonusList == null))
+            {
+               // RemoveAllListObject<Bonus>(_player.bonusList);
+            }
+            finish = true;
+
         }
+
+        
     }
 
+    public void RemoveAllListObject<T>(List<T> obj)
+    {
+        
+        for (int i = 0; i < obj.Count; i++)
+        {
+            T test = obj[i];
+            obj.Remove(obj[i]);
+        }
+    }
+    public void RemoveListObject <T>(List<T> obj,T objToRemove)
+    {
+            obj.Remove(objToRemove);
+    }
     #endregion
-
-    
 }
+

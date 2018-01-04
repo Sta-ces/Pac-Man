@@ -39,7 +39,7 @@ public class MovementController : MonoBehaviour
     void Update ()
     {
         // si x n'est pas compris entre 1 et -1 et idem y 
-        if (!(Input.acceleration.y <= 0.2 && Input.acceleration.y >= -0.2))
+        if (!(Input.acceleration.y <= 0.1 && Input.acceleration.y >= -0.1))
         {
 
             if (Input.acceleration.y < 0 && Input.acceleration.y < Input.acceleration.x)
@@ -58,7 +58,7 @@ public class MovementController : MonoBehaviour
                 }
             }
         }
-        if (!(Input.acceleration.x <= 0.2 && Input.acceleration.x >= -0.2)) {
+        if (!(Input.acceleration.x <= 0.1 && Input.acceleration.x >= -0.1)) {
             if (Input.acceleration.x < 0 )
             {
                 StateAction(e_state.left);

@@ -8,7 +8,8 @@ public class Player : MonoBehaviour
 
     #endregion
     #region Public Members
-    public List<GameObject> scoringObjectList;
+    public List<Bonus> bonusList;
+    public List<GameObject> bonusToDestroy; 
     public int life;
     
     #endregion
@@ -31,8 +32,11 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.transform.tag=="bonus")
+        {
             PickUp(collision.gameObject);
-        Debug.Log("ok");
+        }
+            
     }
 
 
@@ -42,18 +46,13 @@ public class Player : MonoBehaviour
     public void PickUp(GameObject obj)
     {
         //tester la destruction d'objet
-        scoringObjectList.Add(obj);
-        //obj.SetActive(false);
+        bonusList.Add(obj.GetComponent<Bonus>());
+        obj.SetActive(false);
+        bonusToDestroy.Add(obj);
+        
 
     }
-    public void DestroyScoring()
-    {
-        foreach (GameObject obj in scoringObjectList)
-        {
-            Destroy(obj);
-            Debug.Log("isdestroyed");
-        }
-    }
+   
     #endregion
 
 
