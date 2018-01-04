@@ -8,7 +8,8 @@ enum e_state
     up,
     down,
     left,
-    right
+    right,
+    none
 }
 public class MovementController : MonoBehaviour
 {
@@ -18,7 +19,8 @@ public class MovementController : MonoBehaviour
     #region Public Members
     public GameObject player;
     private Rigidbody m_rb;
-   
+    private e_state e_cube_state ;
+
     #endregion
 
     #region Public void
@@ -34,14 +36,49 @@ public class MovementController : MonoBehaviour
     
     void Update ()
     {
-        Debug.Log(Input.acceleration);
-        if (Input.acceleration.x < 0) {
-            StateAction(e_state.left);
+        // si x n'est pas compris entre 1 et -1 et idem y 
+
+        if (!(Input.acceleration.x <= 0.2 && Input.acceleration.x >= -0.2)) {
+            if (Input.acceleration.x < 0 && Input.acceleration.x < Input.acceleration.y)
+            {
+                StateAction(e_state.left);
+            }
+            else
+            {
+                if (Input.acceleration.x > 0 && Input.acceleration.x > Input.acceleration.y)
+                {
+                    StateAction(e_state.right);
+                }
+                else
+                {
+                    StateAction(e_state.none);
+                }
+            }
+           
         }
-        if (Input.acceleration.x < 0)
-        {
-            StateAction(e_state.right);
+     
+        if (!( Input.acceleration.y <= 0.2 && Input.acceleration.y >= -0.2))
+        { 
+
+            if (Input.acceleration.y < 0 )
+            {
+                 StateAction(e_state.up);
+            }
+            else
+            {
+                if (Input.acceleration.y > 0)
+                {
+                    StateAction(e_state.down);
+                }
+                else
+                {
+                    StateAction(e_state.none);
+                }
+            }
         }
+        
+
+        //Debug.Log(Input.acceleration);
     }
 
     #endregion
@@ -93,27 +130,7 @@ public class MovementController : MonoBehaviour
         return str;
     }
 
-    private void AccMov() {
-#if UNITY_ANDROID && !UNITY_EDITOR || UNITY_IOS && !UNITY_EDITOR
-                
-
-#endif
-
-
-        //player.transform.Translate(Input.acceleration.x / 10, transform.position.y, -Input.acceleration.z / 10);
-        if (Input.acceleration.z >= -1.0f&& Input.acceleration.z <= -0.9f)
-        {
-            Debug.Log("ici");
-            m_rb.AddForce(Input.acceleration.x / 10, transform.position.y, player.transform.position.z);
-            //player.transform.Translate();
-
-        }
-        else {
-            //player.transform.Translate(Input.acceleration.x / 10, transform.position.y, -Input.acceleration.z / 10);
-            m_rb.AddForce(Input.acceleration.x / 10, transform.position.y, Input.acceleration.z / 10);
-        }
-        
-    }
+ 
     // à voir si implémentation de balles
     private void Shoot(GameObject obj) {
 
@@ -126,20 +143,27 @@ public class MovementController : MonoBehaviour
         switch (state)
         {
             case e_state.up:
-                Move(1, Vector3.up);
+                Debug.Log("up");
+                Move(1, Vector3.forward);
                 break;
             case e_state.down:
-                Move(1, Vector3.down);
+                Debug.Log("down");
+                Move(1, Vector3.back);
                 break;
             case e_state.left:
                 Debug.Log("left");
-                Move(1, Vector3.left);
+                Move(1, Vector3.right);
                 break;
             case e_state.right:
                 Debug.Log("right");
-                Move(1, Vector3.right);
+                Move(1, Vector3.left);
                 break;
-           
+            case e_state.none:
+                Debug.Log("none");
+                m_rb.velocity = new Vector3(0, 0, 0);
+                ;
+                break;
+
             default:
                 break;
         }
